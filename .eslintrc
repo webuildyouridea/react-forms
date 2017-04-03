@@ -1,0 +1,20 @@
+---
+  parser: "babel-eslint"
+  env:
+    node: true
+    jest: true
+  rules:
+    strict: 0
+    indent: [2, 2]
+    quotes: [2, 'single']
+    no-undef: "error"
+    no-unused-vars: 1 // see https://github.com/babel/babel-eslint/issues/21
+    no-console: ["error", { allow: ["warn", "error"] }]
+    flowtype/define-flow-type: 1
+  globals:
+    window: true
+    "__DEVELOPMENT__": true
+    "Promise": true
+    "document": true
+  plugins: ['react', 'jest', 'flowtype']
+  extends: ['eslint:recommended', 'plugin:react/recommended']
