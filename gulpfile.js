@@ -39,6 +39,7 @@ function createBundler(useWatchify, entry) {
   return browserify({
     entries:        entry || EXAMPLE_SRC + '/index.js',
     exclude:      SRC + '/**/*.spec.js',
+    extensions:    ['jsx'],
     transform:    [[babelify, {}]],
     plugin:       isProd || !useWatchify ? [] : [ lrload ],    // no additional configuration is needed
     debug:        !isProd,

@@ -1,2 +1,2 @@
-import Label from './Label.jsx';
+import Label from './Label';
 export default Label;
