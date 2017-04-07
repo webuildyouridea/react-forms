@@ -3,3 +3,5 @@ distExample
 flow-typed
 .DS_Store
 coverage
+src/ColorPicker
+lib/ColorPicker
