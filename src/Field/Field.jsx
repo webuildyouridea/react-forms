@@ -8,7 +8,7 @@ const style = {
   }
 }
 
-const Field = ({className, classes, children}) => {
+const Field = ({className = '', classes, children}) => {
   const cssClass = `${classes.muub__field} ${className}`;
 
   return (

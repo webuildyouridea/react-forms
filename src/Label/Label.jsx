@@ -11,7 +11,7 @@ const style = {
   }
 }
 
-const Label = ({className, classes, children, htmlFor = ''}) => {
+const Label = ({className = '', classes, children, htmlFor = ''}) => {
   const cssClass = `${classes.muub__label} ${className}`;
 
   return (

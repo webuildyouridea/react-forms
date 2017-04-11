@@ -4,7 +4,7 @@ export default {
     width: '100%',
     position: 'relative',
     fontWeight: 400,
-    display: 'inline-flex'
+    display: 'block'
   },
 
   'muub__input': {
@@ -20,5 +20,18 @@ export default {
     width: '100%',
     verticalAlign: 'top',
     boxSizing: 'border-box'
+  },
+
+  'muub__invalidInput': {
+    border: '1px solid #FF7979'
+  },
+
+  'muub__inputError': {
+    display: 'block',
+    fontSize: '12px',
+    color: '#FF7979',
+    width: '100%',
+    marginTop: '6px',
+    fontFamily: 'Open Sans, Helvetica, Arial, sans-serif'
   }
 }

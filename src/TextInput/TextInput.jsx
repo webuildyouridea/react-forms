@@ -4,6 +4,7 @@ import React, {PropTypes} from 'react';
 import textInputValidators from './TextInputValidators';
 import injectSheet from 'react-jss';
 import styles from './TextInput.style.js';
+import classNames from 'classnames';
 
 import type {TextInputValidatorName} from './TextInputValidators';
 
@@ -124,7 +125,9 @@ class TextInput extends React.Component {
       <div className={classes.muub__inputContainer}>
         <input name={name}
           type={type || 'text'}
-          className={classes.muub__input}
+          className={classNames(classes.muub__input, {
+            [classes.muub__invalidInput]: !this.state.isValid
+          })}
           value={this.state.value}
           onChange={this._onChange}
           {...otherProps}
@@ -132,7 +135,7 @@ class TextInput extends React.Component {
         {
           !shouldHideErrors && errorsKeys.length > 0 && errorsKeys.map((key, index) => {
             return (
-              <span key={index}>
+              <span className={classes.muub__inputError} key={index}>
                 {errors ? errors[key] : null}
               </span>
             )
