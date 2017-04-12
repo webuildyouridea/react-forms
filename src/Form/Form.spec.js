@@ -196,6 +196,7 @@ describe('Form component', () => {
 
         const input = textInput.unwrap()
         input.state.value = '1234';
+        input.state.isPristine = false;
 
         formComponent._validateInput(input);
 

@@ -91,6 +91,33 @@ describe('TextInput component', () => {
     });
   });
 
+  describe('when required prop is passed', () => {
+
+    beforeEach(() => {
+      props = {
+        name: 'email',
+        value: '',
+        validators: {
+          email: true
+        },
+        required: true
+      }
+
+      mountedTextInput = null;
+    });
+
+    it('should add required validator to validators array', () => {
+      const textInputComponent = textInput().unwrap();
+
+      const validators = textInputComponent.validators;
+
+      expect(validators.length).toBe(2);
+      expect(validators[1].name).toBe('required');
+      expect(validators[1].error).toBe('This field is required');
+      expect(validators[1].test).toBeInstanceOf(Function);
+    });
+  });
+
   describe('when input changes', () => {
 
     const NEW_VALUE = 'A';

@@ -92,13 +92,43 @@ class Form extends React.Component {
     textInput.state.errors = {};
 
     for (let validator of validators) {
-      if (!validator.test(textInput.state.value)) {
+      const {value, isPristine} = textInput.state;
+
+      if (!validator.test(value)) {
+        // We don't want to add validator errors if user has not typed anything.
+        // Only display required errors.
+        if (isPristine && validator.name !== 'required') continue;
+
         isValid = false;
         textInput.state.errors[validator.name] = validator.error;
       }
     }
 
     textInput.state.isValid = isValid;
+    return isValid;
+  }
+
+  _validateRequiredFields = () => {
+
+    for (let field in this._inputs) {
+      const input:TextInput = this._inputs[field];
+      if (input.props.required) {
+        const isValid = this._validateInput(input);
+
+        if (!isValid) {
+          this._invalidFields[field] = this._getFieldObjectFromInput(input);
+        }
+        else {
+          delete this._invalidFields[input];
+        }
+
+        input.setState({
+          isValid
+        });
+      }
+    }
+
+    return this._validateForm();
   }
 
   _getFieldObjectFromInput(textInput: TextInput) {
@@ -118,6 +148,8 @@ class Form extends React.Component {
     e.preventDefault();
     const {onSubmit} = this.props;
 
+    this._validateRequiredFields();
+
     onSubmit(this._model);
   }
 
@@ -126,7 +158,7 @@ class Form extends React.Component {
 
     return (
       <form className={`${muub_form} ${className}`}
-        onSubmit={this._onSubmit}>
+        onSubmit={this._onSubmit} noValidate>
         {this.props.children}
       </form>
     )

@@ -4,7 +4,7 @@ import injectSheet from 'react-jss';
 const style = {
   'muub__label': {
     display: 'block',
-    margin: '0 0 .28571429rem',
+    margin: '0 0 12px',
     fontFamily: 'Open Sans, Helvetical, Arial, sans-serif',
     fontSize: '14px',
     textTransform: 'none'

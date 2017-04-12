@@ -16,6 +16,7 @@ export type TextInputProps = {
   errorMessage?: {[key: TextInputValidatorName]: string} | string,
   required?: boolean,
   onChange?: (e: SyntheticInputEvent) => void,
+  onBlur?: (e: SyntheticInputEvent) => void,
   hideErrors: boolean
 }
 
@@ -79,12 +80,23 @@ class TextInput extends React.Component {
     }
 
     for(let validator:string in validators) {
-      let errorMessage = typeof error === 'string' ? error : error[validator];
+      const errorMessage = typeof error === 'string' ? error : error[validator];
 
       this.validators.push({
         name: validator,
         error: errorMessage,
         test: textInputValidators[validator](validators[validator])})
+    }
+
+    if (this.props.required) {
+      let requiredError = 'This field is required';
+      requiredError = typeof error === 'object' ? (error['required'] || requiredError) : requiredError;
+
+      this.validators.push({
+        name: 'required',
+        error: requiredError,
+        test: (value: string): boolean => value !== ''
+      });
     }
   }
 
@@ -102,6 +114,14 @@ class TextInput extends React.Component {
 
     if (this.props.onChange) {
       this.props.onChange(e);
+    }
+  }
+
+  _onBlur = (e: SyntheticInputEvent) => {
+    this._onChange(e);
+
+    if (this.props.onBlur) {
+      this.props.onBlur(e);
     }
   }
 
@@ -130,6 +150,7 @@ class TextInput extends React.Component {
           })}
           value={this.state.value}
           onChange={this._onChange}
+          onBlur={this._onBlur}
           {...otherProps}
         />
         {

@@ -9,7 +9,8 @@ class Example extends React.Component {
   }
 
   state = {
-    email: ''
+    email: '',
+    password: ''
   }
 
   formDidSubmit = (model) => {
@@ -41,7 +42,18 @@ class Example extends React.Component {
               value={this.state.email}
               validators={{email: true}}
               errorMessage={{email: 'Email is invalid'}}
+              required
               onChange={this.emailInputDidChange}></TextInput>
+          </Field>
+          <Field>
+            <Label>Password:</Label>
+            <TextInput name="password"
+              type="password"
+              value={this.state.password}
+              validators={{minLength: 6}}
+              errorMessage={{minLength: 'Minimun length is 6'}}
+              required
+            />
           </Field>
           <button>Submit</button>
         </Form>

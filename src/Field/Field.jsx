@@ -4,7 +4,7 @@ import injectSheet from 'react-jss';
 const style = {
   'muub__field': {
     clear: 'both',
-    margin: '0 0 1em'
+    margin: '0 0 30px'
   }
 }
 
@@ -20,6 +20,7 @@ const Field = ({className = '', classes, children}) => {
 
 Field.propTypes = {
   classes: PropTypes.object,
+  className: PropTypes.string,
   children: PropTypes.any
 }
 

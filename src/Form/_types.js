@@ -13,7 +13,7 @@ export interface Field {
   name: string,
   value: string,
   isValid: boolean,
-  errors: string
+  errors: ?string
 }
 
 export type FieldError = {
