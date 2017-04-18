@@ -1,3 +1,3 @@
-import TextInput from './TextInput';
+import TextInput from './TextInput.jsx';
 
 export default TextInput;

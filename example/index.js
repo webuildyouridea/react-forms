@@ -1,7 +1,7 @@
 import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Form, Field, Label, TextInput} from '../src';
+import {Form, Field, Label, TextInput, TextArea, Dropdown} from '../src';
 
 class Example extends React.Component {
   constructor(props) {
@@ -10,7 +10,9 @@ class Example extends React.Component {
 
   state = {
     email: '',
-    password: ''
+    bio: '',
+    password: '',
+    gender: ''
   }
 
   formDidSubmit = (model) => {
@@ -29,7 +31,12 @@ class Example extends React.Component {
     console.log('InputDidChange value: %s', event.target.value);
   }
 
+  genderDidChange = event => {
+    this.setState({gender: event.target.value});
+  }
+
   render() {
+
     return (
       <div>
         <h1>REACT FORMS EXAMPLE</h1>
@@ -44,6 +51,24 @@ class Example extends React.Component {
               errorMessage={{email: 'Email is invalid'}}
               required
               onChange={this.emailInputDidChange}></TextInput>
+          </Field>
+          <Field>
+            <Label>Bio:</Label>
+            <TextArea name="bio"
+              value={this.state.bio}
+              validators={{maxLength: 140}}
+              errorMessage={{maxLength: 'The limit is 140 characters'}}
+            />
+          </Field>
+          <Field>
+            <Label>Gender:</Label>
+            <Dropdown name="gender"
+            value={this.state.gender}
+            placeholder="I am..."
+            onChange={this.genderDidChange}>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </Dropdown>
           </Field>
           <Field>
             <Label>Password:</Label>

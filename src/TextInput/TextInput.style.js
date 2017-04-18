@@ -22,6 +22,10 @@ export default {
     boxSizing: 'border-box'
   },
 
+  'muub__textArea': {
+    resize: 'none'
+  },
+
   'muub__invalidInput': {
     border: '1px solid #FF7979'
   },

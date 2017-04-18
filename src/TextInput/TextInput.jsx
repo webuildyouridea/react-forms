@@ -174,4 +174,6 @@ TextInput.contextTypes = {
   })
 }
 
+export {TextInput};
+
 export default injectSheet(styles)(TextInput);
