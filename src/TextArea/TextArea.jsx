@@ -14,6 +14,7 @@ class TextArea extends TextInput {
   render() {
     const {name,
       value,
+      className,
       onChange,
       validators,
       errorMessage,
@@ -31,6 +32,7 @@ class TextArea extends TextInput {
         <textarea name={name}
           className={classNames(classes.muub__input, {
             [classes.muub__textArea]: true,
+            [className]: true,
             [classes.muub__invalidInput]: !this.state.isValid
           })}
           value={this.state.value}
