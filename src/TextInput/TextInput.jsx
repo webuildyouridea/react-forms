@@ -133,6 +133,7 @@ class TextInput extends React.Component {
       validators,
       errorMessage,
       hideErrors,
+      className = '',
       classes,
       sheet, // dont include props added by react-jss
       ...otherProps
@@ -146,7 +147,8 @@ class TextInput extends React.Component {
         <input name={name}
           type={type || 'text'}
           className={classNames(classes.muub__input, {
-            [classes.muub__invalidInput]: !this.state.isValid
+            [classes.muub__invalidInput]: !this.state.isValid,
+            [className]: true
           })}
           value={this.state.value}
           onChange={this._onChange}
