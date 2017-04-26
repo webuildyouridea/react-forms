@@ -118,7 +118,10 @@ class TextInput extends React.Component {
   }
 
   _onBlur = (e: SyntheticInputEvent) => {
-    this._onChange(e);
+    const {inputDidChange, validateInput} = this.context.form;
+
+    validateInput(this);
+    inputDidChange(this);
 
     if (this.props.onBlur) {
       this.props.onBlur(e);
