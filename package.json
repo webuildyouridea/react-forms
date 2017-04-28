@@ -1,6 +1,6 @@
 {
   "name": "muub-react-forms",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "React library to handle forms and validation",
   "main": "lib/index.js",
   "scripts": {

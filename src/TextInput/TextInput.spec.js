@@ -142,13 +142,6 @@ describe('TextInput component', () => {
       .first();
     });
 
-    it('should update state.value', () => {
-      const textInputComponent = textInput();
-      textInputComponent.find('input').trigger('change', EVENT_OBJECT);
-
-      expect(textInputComponent.state('value')).toBe(NEW_VALUE);
-    });
-
     it('should call context.form.inputDidChange', () => {
       const textInputComponent = textInput();
       textInputComponent.find('input').trigger('change', EVENT_OBJECT);

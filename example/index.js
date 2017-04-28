@@ -27,8 +27,8 @@ class Example extends React.Component {
     console.log(model);
   }
 
-  emailInputDidChange = (event) => {
-    console.log('InputDidChange value: %s', event.target.value);
+  inputDidChange = (propName, event) => {
+    this.setState({[propName]: event.target.value});
   }
 
   genderDidChange = event => {
@@ -50,7 +50,7 @@ class Example extends React.Component {
               validators={{email: true}}
               errorMessage={{email: 'Email is invalid'}}
               required
-              onChange={this.emailInputDidChange}></TextInput>
+              onChange={this.inputDidChange.bind(null, 'email')}></TextInput>
           </Field>
           <Field>
             <Label>Bio:</Label>
@@ -58,6 +58,7 @@ class Example extends React.Component {
               value={this.state.bio}
               validators={{maxLength: 140}}
               errorMessage={{maxLength: 'The limit is 140 characters'}}
+              onChange={this.inputDidChange.bind(null, 'bio')}
             />
           </Field>
           <Field>
@@ -78,6 +79,7 @@ class Example extends React.Component {
               validators={{minLength: 6}}
               errorMessage={{minLength: 'Minimun length is 6'}}
               required
+              onChange={this.inputDidChange.bind(null, 'password')}
             />
           </Field>
           <button>Submit</button>

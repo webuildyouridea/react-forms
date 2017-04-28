@@ -90,7 +90,6 @@ describe('Form component', () => {
 
       const expectedFieldObject = {
         name: TEXT_INPUT_NAME,
-        value: '',
         isValid: true,
         isPristine: true,
         errors: {}
@@ -193,9 +192,21 @@ describe('Form component', () => {
 
       it('should set valid state prop to false with a invalid email', () => {
         const formComponent = form().unwrap();
+        const INVALID_FIELD_NAME = 'invalid'
 
-        const input = textInput.unwrap()
-        input.state.value = '1234';
+        const input = $(
+          <TextInput name={INVALID_FIELD_NAME} value="1234"
+          validators={{email: true}}
+        />
+        ).render(false, null, {
+          form: {
+            attachInputToForm: formComponent._attachInputToForm,
+            inputDidChange: formComponent._inputDidChange
+          }
+        })
+        .children()
+        .first()
+        .unwrap();
         input.state.isPristine = false;
 
         formComponent._validateInput(input);

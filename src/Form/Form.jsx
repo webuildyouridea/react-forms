@@ -92,7 +92,8 @@ class Form extends React.Component {
     textInput.state.errors = {};
 
     for (let validator of validators) {
-      const {value, isPristine} = textInput.state;
+      const {isPristine} = textInput.state;
+      const {value} = textInput.props;
 
       if (!validator.test(value)) {
         // We don't want to add validator errors if user has not typed anything.
@@ -104,7 +105,7 @@ class Form extends React.Component {
       }
     }
 
-    textInput.state.isValid = isValid;
+    textInput.setState({isValid});
     return isValid;
   }
 

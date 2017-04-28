@@ -15,13 +15,12 @@ export type TextInputProps = {
   validators?: {[key: TextInputValidatorName]: any} | (value: string) => boolean,
   errorMessage?: {[key: TextInputValidatorName]: string} | string,
   required?: boolean,
-  onChange?: (e: SyntheticInputEvent) => void,
+  onChange: (e: SyntheticInputEvent) => void,
   onBlur?: (e: SyntheticInputEvent) => void,
   hideErrors: boolean
 }
 
 type TextInputState = {
-  value: string,
   isValid: boolean,
   isPristine: boolean,
   errors: ?Object,
@@ -49,7 +48,6 @@ class TextInput extends React.Component {
     super(props);
 
     this.state = {
-      value: props.value || '',
       isValid: true,
       isPristine: true,
       errors: {},
@@ -105,7 +103,6 @@ class TextInput extends React.Component {
     const {inputDidChange, validateInput} = this.context.form;
 
     this.setState({
-      value,
       isPristine: false
     }, () => {
       validateInput(this);
@@ -153,7 +150,7 @@ class TextInput extends React.Component {
             [classes.muub__invalidInput]: !this.state.isValid,
             [className]: true
           })}
-          value={this.state.value}
+          value={value}
           onChange={this._onChange}
           onBlur={this._onBlur}
           {...otherProps}
