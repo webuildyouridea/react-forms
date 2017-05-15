@@ -35,21 +35,11 @@ class TextArea extends TextInput {
             [className]: true,
             [classes.muub__invalidInput]: !this.state.isValid
           })}
-          value={this.state.value}
+          value={value}
           onChange={this._onChange}
           onBlur={this._onBlur}
           {...otherProps}
         />
-        {/* <input name={name}
-          type={type || 'text'}
-          className={classNames(classes.muub__input, {
-            [classes.muub__invalidInput]: !this.state.isValid
-          })}
-          value={this.state.value}
-          onChange={this._onChange}
-          onBlur={this._onBlur}
-          {...otherProps}
-        /> */}
         {
           !shouldHideErrors && errorsKeys.length > 0 && errorsKeys.map((key, index) => {
             return (
