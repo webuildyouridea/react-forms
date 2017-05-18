@@ -62,7 +62,7 @@ class Form extends React.Component {
       const fieldComponent = this._inputs[fieldName];
       fieldComponent.setState({
         isValid: false,
-        errors: {[fieldName]: error[fieldName]}
+        errors: {forced: error[fieldName]}
       });
     }
   }
