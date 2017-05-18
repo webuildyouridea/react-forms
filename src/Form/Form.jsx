@@ -52,6 +52,21 @@ class Form extends React.Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (!nextProps.forceErrorOn) return;
+    if (nextProps.forceErrorOn.length < 1) return;
+
+    for(let error of nextProps.forceErrorOn) {
+      const fieldName = Object.keys(error)[0];
+
+      const fieldComponent = this._inputs[fieldName];
+      fieldComponent.setState({
+        isValid: false,
+        errors: {[fieldName]: error[fieldName]}
+      });
+    }
+  }
+
   _attachInputToForm = (textInput: TextInput) => {
     this._inputs[textInput.props.name] = textInput;
     this._model.fields[textInput.props.name] = this._getFieldObjectFromInput(textInput);

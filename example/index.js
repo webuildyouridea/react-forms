@@ -12,7 +12,8 @@ class Example extends React.Component {
     email: '',
     bio: '',
     password: '',
-    gender: ''
+    gender: '',
+    formForcedErrors: []
   }
 
   formDidSubmit = (model) => {
@@ -29,10 +30,19 @@ class Example extends React.Component {
 
   inputDidChange = (propName, event) => {
     this.setState({[propName]: event.target.value});
+
+    if (this.state.formForcedErrors.length > 0) {
+      this.setState({formForcedErrors: []})
+    }
   }
 
   genderDidChange = event => {
     this.setState({gender: event.target.value});
+  }
+
+  forceError = (e) => {
+    e.preventDefault();
+    this.setState({formForcedErrors: [{email: 'Email is already taken'}]});
   }
 
   render() {
@@ -41,7 +51,8 @@ class Example extends React.Component {
       <div>
         <h1>REACT FORMS EXAMPLE</h1>
         <Form onSubmit={this.formDidSubmit}
-          onChange={this.formDidChange}>
+          onChange={this.formDidChange}
+          forceErrorOn={this.state.formForcedErrors}>
           <Field>
             <Label>Email:</Label>
             <TextInput name="email"
@@ -82,6 +93,8 @@ class Example extends React.Component {
               onChange={this.inputDidChange.bind(null, 'password')}
             />
           </Field>
+          <button onClick={this.forceError}>Force Error on Email</button>
+          <br/>
           <button>Submit</button>
         </Form>
       </div>
